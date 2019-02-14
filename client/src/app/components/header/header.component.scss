@@ -2,7 +2,7 @@
 .header {
 	font-family: $font;
 	background-color: $mainColor;
-	color: $headerText;
+	color: $headerFontColor;
 	position: fixed;
 	top: 0;
 	width: 100%;
@@ -22,10 +22,10 @@
 }
 
 .header-login {
-	span {
+	i {
 		position: relative;
 		top: 2px;
 		margin-left: 5px;
-		font-size: 1.4rem;
+		font-size: $iconSize;
 	}
 }

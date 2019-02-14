@@ -1,0 +1,22 @@
+@import "../../../styles.scss";
+
+.sidebar {
+	background-color: $sidebarBackground;
+	position: fixed;
+	top: 80px;
+	left: 0;
+	width: 90px;
+	height: 100%;
+	padding: 1rem;
+	box-shadow: -1px 1px 3px rgba(151, 155, 174, 0.4), 1px 1px 3px rgba(151, 155, 174, 0.4);
+	z-index: 1000;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.sidebar-add, .sidebar-list {
+	padding: 1rem;
+	color: $sidebarIconColor;
+	font-size: $iconSize;
+}
