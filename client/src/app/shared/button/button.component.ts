@@ -1,13 +1,12 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
-  selector: 'app-button',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.scss']
+	selector: 'app-button',
+	templateUrl: './button.component.html',
+	styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent implements OnInit {
-
-  @Input()
+	@Input()
 	label = 'text';
 	@Input()
 	icon: string;
@@ -24,16 +23,15 @@ export class ButtonComponent implements OnInit {
 	@Input()
 	loading = false;
 
-  constructor() { }
+	constructor() {}
 
-  ngOnInit() {
-  }
+	ngOnInit() {}
 
-  onClick(e) {
+	onClick(e) {
 		this.onclick.emit(e);
-  }
-  
-  getClasses() {
+	}
+
+	getClasses() {
 		return {
 			'ui-button-default': true,
 			[`ui-button-${this.size}`]: true,
@@ -51,5 +49,4 @@ export class ButtonComponent implements OnInit {
 
 		return buttonTypeColors[this.type];
 	}
-
 }
