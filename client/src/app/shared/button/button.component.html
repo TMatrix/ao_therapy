@@ -1,1 +1,10 @@
-<button pButton type="button" label="Click" ></button>
+<button 
+	[disabled]="disabled || loading"
+    [icon]="icon"
+    [iconPos]="iconPosition"
+    type="button"
+    pButton
+    (click)="onClick($event)"
+    [ngClass]="getClasses()"
+    [label]="label"
+></button>

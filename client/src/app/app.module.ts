@@ -7,7 +7,8 @@ import { AppComponent } from '@app/app.component';
 import { LoginComponent } from '@app/components/login/login.component';
 import { HeaderComponent } from '@app/components/header/header.component';
 import { SidebarComponent } from '@app/components/sidebar/sidebar.component';
-import { ButtonComponent } from './shared/button/button.component';
+import { ButtonComponent } from '@app/shared/button/button.component';
+import { SharedModule } from '@app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ButtonComponent } from './shared/button/button.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
