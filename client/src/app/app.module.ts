@@ -10,6 +10,7 @@ import { SidebarComponent } from '@app/components/sidebar/sidebar.component';
 import { ButtonComponent } from '@app/shared/button/button.component';
 import { SharedModule } from '@app/shared/shared.module';
 import { InputComponent } from '@app/shared/input/input.component';
+import { PatientRegistrationComponent } from './components/patient-registration/patient-registration.component';
 
 @NgModule({
 	declarations: [
@@ -18,7 +19,8 @@ import { InputComponent } from '@app/shared/input/input.component';
 		HeaderComponent,
 		SidebarComponent,
 		ButtonComponent,
-		InputComponent
+		InputComponent,
+		PatientRegistrationComponent
 	],
 	imports: [BrowserModule, AppRoutingModule, RouterModule, SharedModule],
 	providers: [],
