@@ -14,7 +14,7 @@ class UserRepository extends Repository {
 	}
 
 	getById(id) {
-		return this.model.findById(id, {
+		return this.model.findByPk(id, {
 			attributes: ['id', 'name', 'email']
 		});
 	}
