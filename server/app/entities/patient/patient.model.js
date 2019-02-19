@@ -10,7 +10,7 @@ const Patient = sequelize.define('patients', {
 		}
 	},
 	age: {
-		type: Sequelize.TINYINT,
+		type: Sequelize.SMALLINT,
 		allowNull: false,
 		validate: {
 			is: { args: /^[0-9]{1,3}$/i, msg: 'Not valid age value' }
@@ -34,14 +34,17 @@ const Patient = sequelize.define('patients', {
 		type: Sequelize.STRING,
 		allowNull: false,
 		validate: {
-			is: { args: /^[a-zA-Z ]{1,100}$/i, msg: 'Not valid department value' }
+			is: {
+				args: /^[a-zA-Z ]{1,100}$/i,
+				msg: 'Not valid department value'
+			}
 		}
 	},
 	data: {
 		type: Sequelize.STRING,
 		allowNull: false,
 		validate: {
-			is: { args: /^[a-zA-Z.]{1,15}$/i, msg: 'Not valid data' }
+			is: { args: /^[.0-9]{1,15}$/i, msg: 'Not valid data' }
 		}
 	}
 });

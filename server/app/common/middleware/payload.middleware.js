@@ -2,7 +2,6 @@ const PayloadGeneratorService = require('../services/payload-generator.service')
 
 const successOrEmptyPayload = (req, res, next) => {
 	const payload = PayloadGeneratorService.getResponsePayload(res);
-
 	if (payload) {
 		res.json(payload);
 		res.end();
