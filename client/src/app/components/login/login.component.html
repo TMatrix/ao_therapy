@@ -1,5 +1,12 @@
-<div class="ui-fluid">
-  <p>
-    login works!
-  </p>
+<div class="login-container">
+	<h3>Antioxydant Therapy</h3>
+	<div class="main-block">
+		<app-login-form
+			[loginForm]="loginForm"
+			(loginClick)="onLogin($event)"
+		></app-login-form>
+	</div>
+	<div class="">
+
+	</div>
 </div>

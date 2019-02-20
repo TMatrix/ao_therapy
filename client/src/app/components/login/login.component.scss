@@ -1,6 +1,27 @@
-div {
-	width: 60%;
-	height: 300px;
-	margin: 0 auto;
+@import "./../../../styles.scss";
+
+.login-container {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 	border: 1px solid red;
+}
+
+.main-block {
+	width: 100%;
+	min-height: 20px;
+	border-top: none;
+	padding: 1.5rem;
+	display: block;
+	position: relative;
+	margin-bottom: 1rem;
+	border-radius: 3px;
+	font-family: $font;
+	font-size: $fontSize;
+	transition: .1s ease;
+	background-color: $secondaryColor;
+	box-shadow: -1px 1px 3px rgba(151, 155, 174, 0.2), 1px 1px 3px rgba(151, 155, 174, 0.2);
+	box-sizing: border-box;
 }

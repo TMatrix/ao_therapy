@@ -1,12 +1,30 @@
 <div class="header">
 	<div class="header-logo">
-		<img src="" alt="Logo" />
+		<a
+			[routerLink]="['/app']"
+			class="header-logo"
+		>
+			<img src="assets/aoTherapyLogo.svg" alt="Logo">
+		</a>
 	</div>
 	<div class="header-login">
-		<app-button
+		<!-- <app-button
 			icon="pi pi-sign-in"
 			iconPosition="right"
 			label="Sign in"
-		></app-button>
+		></app-button> -->
+		<app-button
+				label="Sign in"
+				size="middle"
+				type="secondary"
+				*ngIf="!isAuthorized"
+				routerLink="/login"
+			></app-button>
+		<!-- <app-header-profile
+			[label]="userName"
+			*ngIf="isAuthorized"
+			[items]="profileItems"
+			[image]="userImage"
+		></app-header-profile> -->
 	</div>
 </div>

@@ -1,0 +1,26 @@
+<form [formGroup]="loginForm">
+		<div class="ui-fluid">
+			<app-input
+				class="ui-fluid"
+				type="text"
+				label="Email"
+				[control]="loginForm.controls['email']"
+			></app-input>
+			<app-input
+				type="password"
+				label="Password"
+				[control]="loginForm.controls['password']"
+			></app-input>
+		</div>
+		<div class="ui-g">
+			<div class="ui-g-4 ui-g-offset-4" style="padding: 0">
+				<app-button
+					class="ui-fluid"
+					label="Login"
+					type="secondary"
+					[disabled]="loginForm.invalid"
+					(onclick)="onClickLogin()"
+				></app-button>
+			</div>
+		</div>
+	</form>	
