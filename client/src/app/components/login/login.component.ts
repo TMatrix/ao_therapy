@@ -22,10 +22,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 	// private storeDisconnect: () => void;
 
-	constructor(
-		private loginService: LoginService,
-		// private storeService: StoreService
-	) {}
+	constructor(private loginService: LoginService) {} // private storeService: StoreService
 
 	ngOnInit() {
 		this.createForms();

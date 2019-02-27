@@ -13,6 +13,7 @@ import { InputComponent } from '@app/shared/input/input.component';
 import { PatientRegistrationComponent } from '@app/components/patient-registration/patient-registration.component';
 import { LoginFormComponent } from '@app/components/login-form/login-form.component';
 import { ServiceModule } from '@app/services/services.module';
+import { APIModule } from '@app/api/api.module';
 
 @NgModule({
 	declarations: [
@@ -25,7 +26,14 @@ import { ServiceModule } from '@app/services/services.module';
 		PatientRegistrationComponent,
 		LoginFormComponent
 	],
-	imports: [BrowserModule, AppRoutingModule, RouterModule, SharedModule, ServiceModule],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		RouterModule,
+		SharedModule,
+		ServiceModule,
+		APIModule
+	],
 	providers: [],
 	bootstrap: [AppComponent]
 })

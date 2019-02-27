@@ -1,4 +1,4 @@
-@import "./../../../styles.scss";
+@import './../../../styles.scss';
 
 .login-container {
 	height: 100%;
@@ -20,8 +20,9 @@
 	border-radius: 3px;
 	font-family: $font;
 	font-size: $fontSize;
-	transition: .1s ease;
+	transition: 0.1s ease;
 	background-color: $secondaryColor;
-	box-shadow: -1px 1px 3px rgba(151, 155, 174, 0.2), 1px 1px 3px rgba(151, 155, 174, 0.2);
+	box-shadow: -1px 1px 3px rgba(151, 155, 174, 0.2),
+		1px 1px 3px rgba(151, 155, 174, 0.2);
 	box-sizing: border-box;
 }

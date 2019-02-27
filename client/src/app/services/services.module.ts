@@ -4,10 +4,6 @@ import { LoginService } from '@app/services/login.service';
 import { TokenService } from '@app/services/token.service';
 
 @NgModule({
-	providers: [
-		FormService,
-		LoginService,
-		TokenService
-	]
+	providers: [FormService, LoginService, TokenService]
 })
 export class ServiceModule {}

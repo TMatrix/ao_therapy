@@ -7,7 +7,7 @@ import {
 	requiredValidator,
 	emailValidator,
 	minLengthValidator,
-	passwordValidator,
+	passwordValidator
 } from '@app/shared/form-validators';
 
 import { Login } from '@app/models/login.model';

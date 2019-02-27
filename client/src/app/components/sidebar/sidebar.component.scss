@@ -1,4 +1,4 @@
-@import "../../../styles.scss";
+@import '../../../styles.scss';
 
 .sidebar {
 	background-color: $sidebarBackground;
@@ -14,7 +14,8 @@
 	align-items: center;
 }
 
-.sidebar-add, .sidebar-list {
+.sidebar-add,
+.sidebar-list {
 	width: 130px;
 	padding: 1rem;
 	margin: 10px auto;

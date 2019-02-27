@@ -1,7 +1,37 @@
 .main-block {
 	width: 80%;
-	margin: 0 auto;
-	margin-top: 8vh;
+	margin: 90px auto;
 	padding: 1rem;
 	border: 1px solid red;
+}
+
+h3 {
+	text-align: center;
+}
+
+.patient-form {
+	margin: 0 auto;
+	width: 200px;
+	text-align: center;
+	span {
+		margin-top: 25px;
+		input {
+			width: 100%;
+		}
+	}
+	.radiobuttons {
+		margin-top: 25px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		p {
+			margin-right: 15px;
+		}
+		.radioMargin {
+			margin-right: 10px;
+		}
+	}
+	button {
+		margin-top: 20px;
+	}
 }

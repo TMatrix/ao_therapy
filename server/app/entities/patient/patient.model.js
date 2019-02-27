@@ -40,7 +40,7 @@ const Patient = sequelize.define('patients', {
 			}
 		}
 	},
-	data: {
+	date: {
 		type: Sequelize.STRING,
 		allowNull: false,
 		validate: {
