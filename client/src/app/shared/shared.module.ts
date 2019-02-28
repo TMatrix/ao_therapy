@@ -9,6 +9,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { CalendarModule } from 'primeng/calendar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TableModule } from 'primeng/table';
 
 @NgModule({
 	declarations: [],
@@ -21,7 +22,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 		FormsModule,
 		ReactiveFormsModule,
 		BrowserAnimationsModule,
-		ProgressSpinnerModule
+		ProgressSpinnerModule,
+		TableModule
 	],
 	exports: [
 		ButtonModule,
@@ -31,7 +33,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 		FormsModule,
 		ReactiveFormsModule,
 		BrowserAnimationsModule,
-		ProgressSpinnerModule
+		ProgressSpinnerModule,
+		TableModule
 	]
 })
 export class SharedModule {}

@@ -60,12 +60,19 @@ export class PatientRegistrationComponent implements OnInit, OnDestroy {
 			{} as any
 		);
 
-		this.patientService.register(patient).subscribe(data => {
-			if (data.isSuccess === true) {
+		this.patientService.register(patient).subscribe(
+			data => {
+				if (data.isSuccess === true) {
+					this.patientForm.reset();
+				}
+			},
+			error => {
 				this.isLoading = false;
-				this.patientForm.reset();
+			},
+			() => {
+				this.isLoading = false;
 			}
-		});
+		);
 	}
 
 	ngOnDestroy() {

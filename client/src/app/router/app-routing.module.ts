@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PatientRegistrationComponent } from '@app/components/patient-registration/patient-registration.component';
+import { PatientListComponent } from '@app/components/patient-list/patient-list.component';
 import { LoginComponent } from '@app/components/login/login.component';
 import { AppComponent } from '@app/app.component';
 import { LoginAuthGuard } from '@app/services/guards/login-auth.guard';
@@ -18,9 +19,12 @@ const appRoutes: Routes = [
 			{
 				path: 'patient-registration',
 				component: PatientRegistrationComponent
-			}
+			},
 			// { path: 'patient', component: PatientComponent},
-			// { path: 'patient-list', component: PatientListComponent },
+			{
+				path: 'patient-list',
+				component: PatientListComponent
+			}
 		]
 	},
 	{

@@ -9,7 +9,7 @@ class PatientRepository extends Repository {
 
 	getAll() {
 		return this.model.findAll({
-			attributes: ['id', 'name', 'case']
+			attributes: ['id', 'name', 'case', 'date']
 		});
 	}
 

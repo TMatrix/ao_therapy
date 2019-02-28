@@ -14,6 +14,7 @@ import { PatientRegistrationComponent } from '@app/components/patient-registrati
 import { LoginFormComponent } from '@app/components/login-form/login-form.component';
 import { ServiceModule } from '@app/services/services.module';
 import { APIModule } from '@app/api/api.module';
+import { PatientListComponent } from './components/patient-list/patient-list.component';
 
 @NgModule({
 	declarations: [
@@ -24,7 +25,8 @@ import { APIModule } from '@app/api/api.module';
 		ButtonComponent,
 		InputComponent,
 		PatientRegistrationComponent,
-		LoginFormComponent
+		LoginFormComponent,
+		PatientListComponent
 	],
 	imports: [
 		BrowserModule,

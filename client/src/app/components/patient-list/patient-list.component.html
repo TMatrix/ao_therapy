@@ -1,0 +1,24 @@
+<div class="ui-g main-block">
+	<p-table
+		[columns]="cols"
+		[value]="patients"
+		selectionMode="single"
+		dataKey="id"
+		(onRowSelect)="onRowSelect($event)"
+	>
+		<ng-template pTemplate="header" let-columns>
+			<tr>
+				<th *ngFor="let col of columns">
+					{{ col.header }}
+				</th>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body" let-rowData let-columns="columns">
+			<tr [pSelectableRow]="rowData" style="text-align: center;">
+				<td *ngFor="let col of columns">
+					{{ rowData[col.field] }}
+				</td>
+			</tr>
+		</ng-template>
+	</p-table>
+</div>

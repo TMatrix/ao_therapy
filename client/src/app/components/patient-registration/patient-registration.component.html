@@ -27,22 +27,24 @@
 			<input id="age" type="number" pInputText formControlName="age" />
 			<label for="age">Age</label>
 		</span>
-		<div class="radiobuttons">
-			<p>Sex:</p>
-			<div class="radioMargin">
+		<div class="radiobuttons ui-g">
+			<p class="ui-g-2">Sex:</p>
+			<div class="ui-g-5">
 				<p-radioButton
 					name="sex"
 					value="m"
 					label="Male"
 					formControlName="sex"
+					labelStyleClass="sexLabel"
 				></p-radioButton>
 			</div>
-			<div class="radioMargin">
+			<div class="ui-g-5">
 				<p-radioButton
 					name="sex"
 					value="f"
 					label="Female"
 					formControlName="sex"
+					labelStyleClass="sexLabel"
 				></p-radioButton>
 			</div>
 		</div>
@@ -66,13 +68,23 @@
 			[placeholder]="'Date'"
 		></p-calendar>
 		<button
+			*ngIf="!isLoading"
+			pButton
+			type="reset"
+			label="Cancel"
+			[disabled]="false"
+			class="ui-button-secondary"
+			[routerLink]="['/app/']"
+		></button>
+		<button
+			*ngIf="!isLoading"
 			pButton
 			type="submit"
 			label="Submit"
 			[disabled]="!patientForm.valid"
 		></button>
-		<!-- <div *ngIf="isLoading">
+		<div *ngIf="isLoading">
 			<p-progressSpinner></p-progressSpinner>
-		</div> -->
+		</div>
 	</form>
 </div>
