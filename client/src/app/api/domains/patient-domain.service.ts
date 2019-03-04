@@ -46,8 +46,8 @@ export class PatientDomainService {
 		);
 	}
 
-	get(payload: { id: string }): Observable<ResponseScheme<Patient>> {
-		return this.httpService.makeRequest<ResponseScheme<Patient>>(
+	get(payload: { id: string }): Observable<ResponseScheme<any>> {
+		return this.httpService.makeRequest<ResponseScheme<any>>(
 			new ServiceRequest(
 				RequestType.GET,
 				`${this.patientPath}/${payload.id}`

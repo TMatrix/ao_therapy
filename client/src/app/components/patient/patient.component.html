@@ -1,0 +1,34 @@
+<div class="main-block">
+	<div class="treatment-header">
+		<h3>Patient: {{ patient.firstname + ' ' + patient.lastname }}</h3>
+		<button pButton type="button" label="Info"></button>
+		<button pButton type="button" label="Edit"></button>
+		<button pButton type="button" label="Exit"></button>
+	</div>
+	<ol class="treatment-body">
+		<li>
+			<p>Set initial AO system state</p>
+			<button pButton type="button" label="Set Initial"></button>
+		</li>
+		<li>
+			<p>Select antioxydant for treatment</p>
+			<div>
+				<p-dropdown
+					[options]="antioxydants"
+					[(ngModel)]="selectedAO"
+				></p-dropdown>
+				<button pButton type="button" label="Set 20min state"></button>
+				<button pButton type="button" label="Set 3day state"></button>
+			</div>
+		</li>
+	</ol>
+	<div class="treatment-history">
+		<div class="history-item" *ngFor="let item of history">
+			<div class="item-initial">
+				<h5>{{ item.initial['name'] }}</h5>
+			</div>
+			<div class="item-second"></div>
+			<div class="item-third"></div>
+		</div>
+	</div>
+</div>

@@ -10,6 +10,7 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { CalendarModule } from 'primeng/calendar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TableModule } from 'primeng/table';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
 	declarations: [],
@@ -23,7 +24,8 @@ import { TableModule } from 'primeng/table';
 		ReactiveFormsModule,
 		BrowserAnimationsModule,
 		ProgressSpinnerModule,
-		TableModule
+		TableModule,
+		DropdownModule
 	],
 	exports: [
 		ButtonModule,
@@ -34,7 +36,8 @@ import { TableModule } from 'primeng/table';
 		ReactiveFormsModule,
 		BrowserAnimationsModule,
 		ProgressSpinnerModule,
-		TableModule
+		TableModule,
+		DropdownModule
 	]
 })
 export class SharedModule {}

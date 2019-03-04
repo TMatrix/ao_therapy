@@ -64,12 +64,11 @@ export class PatientRegistrationComponent implements OnInit, OnDestroy {
 			data => {
 				if (data.isSuccess === true) {
 					this.patientForm.reset();
+					this.isLoading = false;
 				}
+				// If succesfully, then go to registered patient page 'patient/:id'
 			},
 			error => {
-				this.isLoading = false;
-			},
-			() => {
 				this.isLoading = false;
 			}
 		);

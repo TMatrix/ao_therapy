@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { PatientDomainService as PatientService } from '@app/api/domains/patient-domain.service';
 import { Patient } from '@app/models/patient.model';
 
@@ -11,7 +12,10 @@ export class PatientListComponent implements OnInit {
 	cols: any[];
 	patients: Patient[];
 
-	constructor(private patientService: PatientService) {}
+	constructor(
+		private patientService: PatientService,
+		private route: Router
+	) {}
 
 	ngOnInit() {
 		this.patientService.getAll().subscribe(data => {
@@ -29,5 +33,6 @@ export class PatientListComponent implements OnInit {
 	onRowSelect(event) {
 		// console.log(event.data.id);
 		// go to patient page with selected :id
+		this.route.navigate([`/app/patient/${event.data.id}`]);
 	}
 }
