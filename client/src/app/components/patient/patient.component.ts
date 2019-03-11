@@ -10,8 +10,11 @@ import { SelectItem } from 'primeng/api';
 	styleUrls: ['./patient.component.scss']
 })
 export class PatientComponent implements OnInit {
-	currentPatient: string;
+	currentPatientId: string;
 	patient: Patient;
+	displayProfile: boolean;
+	displayInitial: boolean;
+	isInitSetted: boolean;
 
 	antioxydants: SelectItem[];
 	selectedAO: string;
@@ -32,36 +35,111 @@ export class PatientComponent implements OnInit {
 	}
 
 	ngOnInit() {
-		this.currentPatient = this.route.snapshot.paramMap.get('id');
-		this.patientService.get({ id: this.currentPatient }).subscribe(data => {
-			const name = data.payload.name.split(' ');
-			this.patient['firstname'] = name[0];
-			this.patient['lastname'] = name[1];
-			this.patient['age'] = data.payload.age;
-			this.patient['case'] = data.payload.case;
-			this.patient['department'] = data.payload.department;
-			this.patient['sex'] = data.payload.sex;
-		});
-
+		this.currentPatientId = this.route.snapshot.paramMap.get('id');
+		this.patientService
+			.get({ id: this.currentPatientId })
+			.subscribe(data => {
+				const name = data.payload.name.split(' ');
+				this.patient['firstname'] = name[0];
+				this.patient['lastname'] = name[1];
+				this.patient['age'] = data.payload.age;
+				this.patient['case'] = data.payload.case;
+				this.patient['department'] = data.payload.department;
+				this.patient['sex'] = data.payload.sex;
+			});
+		this.isInitSetted = false;
 		this.history = [
 			{
 				initial: {
-					name: '',
-					date: '',
-					time: '',
-					taa: 0,
-					lactate: 0,
-					pyruvate: 0
+					date: '22.9.2019',
+					time: '12:23',
+					taa: 130,
+					lactate: 100,
+					pyruvate: 80
 				},
 				second: {
-					name: '',
-					date: '',
-					time: '',
-					taa: 0,
-					lactate: 0,
-					pyruvate: 0
+					name: 'Cardioxipin',
+					date: '22.9.2019',
+					time: '12:43',
+					taa: 140,
+					lactate: 120,
+					pyruvate: 90,
+					isRecommended: true
+				}
+			},
+			{
+				initial: {
+					date: '22.9.2019',
+					time: '12:23',
+					taa: 130,
+					lactate: 100,
+					pyruvate: 80
+				},
+				second: {
+					name: 'Cardioxipin',
+					date: '22.9.2019',
+					time: '12:43',
+					taa: 140,
+					lactate: 120,
+					pyruvate: 90,
+					isRecommended: true
+				}
+			},
+			{
+				initial: {
+					date: '22.9.2019',
+					time: '12:23',
+					taa: 130,
+					lactate: 100,
+					pyruvate: 80
+				},
+				second: {
+					name: 'Cardioxipin',
+					date: '22.9.2019',
+					time: '12:43',
+					taa: 140,
+					lactate: 120,
+					pyruvate: 90,
+					isRecommended: true
+				},
+				third: {
+					name: 'Cardioxipin',
+					date: '22.9.2019',
+					time: '12:43',
+					taa: 140,
+					lactate: 120,
+					pyruvate: 90,
+					isRecommended: true
 				}
 			}
 		];
+	}
+
+	onShowProfile() {
+		this.displayProfile = true;
+	}
+
+	onSetState(data) {
+		this.displayInitial = true;
+		switch (data) {
+			case 'init':
+				// Service to post init state to ao_operations table of DB
+				// on success response set isInitSetted to 'true'
+				break;
+			case 'second':
+				break;
+			case 'third':
+				break;
+			default:
+				break;
+		}
+	}
+
+	onResetState() {
+		this.isInitSetted = false;
+	}
+
+	isThirdPresented(item) {
+		return Object.keys(item).includes('third');
 	}
 }

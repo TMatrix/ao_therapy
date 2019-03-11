@@ -1,4 +1,58 @@
+$itemWidth: 250px;
+
 .main-block {
-	margin: 90px 0 0 165px;
-	border: 1px solid blue;
+	margin: 90px 15px 0 165px;
+	border-radius: 5px;
+	box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.27);
+}
+
+.treatment-header {
+	padding: 15px 10px 15px 10px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.treatment-header h3 {
+	padding: 0 0 0 20px;
+	width: calc(100% * (9 / 12));
+}
+
+.treatment-header-button {
+	margin: 0;
+
+	button {
+		margin: 0px 10px 0 0;
+		width: 70px;
+		font-size: 0.8rem;
+	}
+}
+
+.treatment-body-ao {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.history-item {
+	margin: 15px 10px;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: center;
+	box-shadow: 1px 1px 1px 1px rgba(112, 112, 112, 0.27);
+
+	.item-initial,
+	.item-second,
+	.item-third {
+		width: $itemWidth;
+		height: 150px;
+		margin: 10px;
+		padding: 5px;
+		border: 1px solid rgba(112, 112, 112, 0.27);
+		border-radius: 10px;
+		overflow: hidden;
+	}
 }

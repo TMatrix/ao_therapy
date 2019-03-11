@@ -1,34 +1,124 @@
 <div class="main-block">
 	<div class="treatment-header">
 		<h3>Patient: {{ patient.firstname + ' ' + patient.lastname }}</h3>
-		<button pButton type="button" label="Info"></button>
-		<button pButton type="button" label="Edit"></button>
-		<button pButton type="button" label="Exit"></button>
+		<div class="treatment-header-button">
+			<button
+				pButton
+				type="button"
+				label="Profile"
+				(click)="onShowProfile()"
+			></button>
+			<button
+				pButton
+				type="button"
+				label="Exit"
+				[routerLink]="['/app/']"
+			></button>
+		</div>
 	</div>
+	<p-dialog header="Profile" [(visible)]="displayProfile" [modal]="'true'">
+		Content
+		<button pButton type="button" label="Edit"></button>
+	</p-dialog>
 	<ol class="treatment-body">
 		<li>
-			<p>Set initial AO system state</p>
-			<button pButton type="button" label="Set Initial"></button>
+			<p>Determination of AO system initial state</p>
+			<button
+				pButton
+				type="button"
+				label="Set Initial"
+				(click)="onSetState('init')"
+				[disabled]="isInitSetted"
+			></button>
+			<button
+				pButton
+				type="button"
+				label="Reset"
+				(click)="onResetState('init')"
+				[disabled]="!isInitSetted"
+			></button>
 		</li>
 		<li>
 			<p>Select antioxydant for treatment</p>
-			<div>
+			<div class="treatment-body-ao">
 				<p-dropdown
 					[options]="antioxydants"
 					[(ngModel)]="selectedAO"
 				></p-dropdown>
-				<button pButton type="button" label="Set 20min state"></button>
-				<button pButton type="button" label="Set 3day state"></button>
+				<button
+					pButton
+					type="button"
+					label="Set 20min state"
+					(click)="onSetState('second')"
+				></button>
+				<button
+					pButton
+					type="button"
+					label="Set 3day state"
+					(click)="onSetState('third')"
+				></button>
 			</div>
 		</li>
 	</ol>
+	<p-dialog
+		header="Initial state"
+		[(visible)]="displayInitial"
+		[modal]="'true'"
+	>
+		<div>
+			TAA:
+			<input pInput type="number" />
+			mg\l
+		</div>
+		<div>
+			Lactate:
+			<input pInput type="number" />
+			mg\l
+		</div>
+		<div>
+			Pyruvate:
+			<input pInput type="number" />
+			mg\l
+		</div>
+		<button
+			pButton
+			type="button"
+			label="Save"
+			(click)="onSaveInitial()"
+		></button>
+	</p-dialog>
 	<div class="treatment-history">
 		<div class="history-item" *ngFor="let item of history">
 			<div class="item-initial">
-				<h5>{{ item.initial['name'] }}</h5>
+				<h5>Initial</h5>
+				<ul>
+					<li>Date: {{ item.initial.date }}</li>
+					<li>Time: {{ item.initial.time }}</li>
+					<li>TAA: {{ item.initial.taa }}</li>
+					<li>Lactate: {{ item.initial.lactate }}</li>
+					<li>Pyruvate: {{ item.initial.pyruvate }}</li>
+				</ul>
 			</div>
-			<div class="item-second"></div>
-			<div class="item-third"></div>
+			<div class="item-second">
+				<h5>{{ item.second.name }} - 20 min</h5>
+				<ul>
+					<li>Date: {{ item.second.date }}</li>
+					<li>Time: {{ item.second.time }}</li>
+					<li>TAA: {{ item.second.taa }}</li>
+					<li>Lactate: {{ item.second.lactate }}</li>
+					<li>Pyruvate: {{ item.second.pyruvate }}</li>
+				</ul>
+			</div>
+			<div class="item-third" *ngIf="isThirdPresented(item)">
+				<h5>{{ item.third.name }} - 3 day</h5>
+				<ul>
+					<li>Date: {{ item.third.date }}</li>
+					<li>Time: {{ item.third.time }}</li>
+					<li>TAA: {{ item.third.taa }}</li>
+					<li>Lactate: {{ item.third.lactate }}</li>
+					<li>Pyruvate: {{ item.third.pyruvate }}</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 </div>

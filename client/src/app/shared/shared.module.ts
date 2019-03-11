@@ -11,6 +11,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TableModule } from 'primeng/table';
 import { DropdownModule } from 'primeng/dropdown';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
 	declarations: [],
@@ -25,7 +26,7 @@ import { DropdownModule } from 'primeng/dropdown';
 		BrowserAnimationsModule,
 		ProgressSpinnerModule,
 		TableModule,
-		DropdownModule
+		DialogModule
 	],
 	exports: [
 		ButtonModule,
@@ -37,7 +38,8 @@ import { DropdownModule } from 'primeng/dropdown';
 		BrowserAnimationsModule,
 		ProgressSpinnerModule,
 		TableModule,
-		DropdownModule
+		DropdownModule,
+		DialogModule
 	]
 })
 export class SharedModule {}
