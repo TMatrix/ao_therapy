@@ -1,9 +1,10 @@
-$itemWidth: 250px;
+$itemWidth: 100%;
 
 .main-block {
 	margin: 90px 15px 0 165px;
 	border-radius: 5px;
 	box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.27);
+	padding: 1rem;
 }
 
 .treatment-header {
@@ -29,6 +30,46 @@ $itemWidth: 250px;
 	}
 }
 
+.treatment-body {
+	min-height: 40vh;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+
+	.state-container {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
+	.list-ao,
+	.initial-state,
+	.second-state,
+	.third-state {
+		height: 200px;
+		margin: 10px;
+		padding: 5px;
+		border: 1px solid gray;
+		border-radius: 5px;
+
+		h4 {
+			text-align: center;
+			padding: 0.5rem;
+		}
+
+		ul,
+		li {
+			margin: 0;
+			padding: 0;
+		}
+		ul li {
+			list-style: none;
+		}
+	}
+}
+
 .treatment-body-ao {
 	display: flex;
 	flex-direction: row;
@@ -42,17 +83,22 @@ $itemWidth: 250px;
 	flex-direction: row;
 	flex-wrap: wrap;
 	align-items: center;
-	box-shadow: 1px 1px 1px 1px rgba(112, 112, 112, 0.27);
 
-	.item-initial,
-	.item-second,
-	.item-third {
+	.item {
 		width: $itemWidth;
-		height: 150px;
 		margin: 10px;
 		padding: 5px;
 		border: 1px solid rgba(112, 112, 112, 0.27);
 		border-radius: 10px;
 		overflow: hidden;
+
+		ul {
+			display: flex;
+		}
+
+		ul li {
+			margin: 5px;
+			list-style: none;
+		}
 	}
 }

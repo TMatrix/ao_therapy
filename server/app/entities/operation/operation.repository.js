@@ -11,7 +11,8 @@ class OperationRepository extends Repository {
 		return this.model.findAll({
 			where: {
 				patient_id: patientId
-			}
+			},
+			order: [['id', 'DESC']]
 		});
 	}
 

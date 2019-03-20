@@ -10,8 +10,9 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { CalendarModule } from 'primeng/calendar';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { TableModule } from 'primeng/table';
-import { DropdownModule } from 'primeng/dropdown';
+import { ListboxModule } from 'primeng/listbox';
 import { DialogModule } from 'primeng/dialog';
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
 	declarations: [],
@@ -26,7 +27,8 @@ import { DialogModule } from 'primeng/dialog';
 		BrowserAnimationsModule,
 		ProgressSpinnerModule,
 		TableModule,
-		DialogModule
+		DialogModule,
+		AccordionModule
 	],
 	exports: [
 		ButtonModule,
@@ -38,8 +40,9 @@ import { DialogModule } from 'primeng/dialog';
 		BrowserAnimationsModule,
 		ProgressSpinnerModule,
 		TableModule,
-		DropdownModule,
-		DialogModule
+		ListboxModule,
+		DialogModule,
+		AccordionModule
 	]
 })
 export class SharedModule {}

@@ -24,14 +24,13 @@ export class PatientListComponent implements OnInit {
 
 		this.cols = [
 			{ field: 'id', header: 'No' },
-			{ field: 'name', header: 'Patient\'s name' },
+			{ field: 'name', header: "Patient's name" },
 			{ field: 'case', header: 'Case No' },
 			{ field: 'date', header: 'Registration date' }
 		];
 	}
 
 	onRowSelect(event) {
-		// console.log(event.data.id);
 		// go to patient page with selected :id
 		this.route.navigate([`/app/patient/${event.data.id}`]);
 	}

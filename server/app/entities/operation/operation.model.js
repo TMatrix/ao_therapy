@@ -8,7 +8,7 @@ const Operation = sequelize.define('operations', {
 	},
 	name: {
 		type: Sequelize.STRING,
-		allowNull: false,
+		allowNull: true,
 		validate: {
 			is: { args: /^[a-zA-Z ]{1,100}$/i, msg: 'Not valid name' }
 		}

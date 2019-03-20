@@ -1,4 +1,5 @@
 const OperationRepository = require('./operation.repository');
+const PatientService = require('../patient/patient.service');
 
 class OperationService {
 	constructor() {
@@ -32,9 +33,20 @@ class OperationService {
 			});
 	}
 
-	save(operation) {
-		return this.OperationRepository.save(operation)
-			.then(data => data)
+	save(payload) {
+		return this.OperationRepository.save(payload.operation)
+			.then(data => {
+				if (data.dataValues.isRecommended) {
+					const patientId = +data.dataValues.patient_id;
+					PatientService.getById(patientId).then(patient => {
+						PatientService.update(patientId, {
+							recommendedAO: data.dataValues.name,
+							...patient
+						});
+					});
+				}
+				return data;
+			})
 			.catch(err => {
 				throw err;
 			});

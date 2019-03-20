@@ -20,14 +20,52 @@
 		Content
 		<button pButton type="button" label="Edit"></button>
 	</p-dialog>
-	<ol class="treatment-body">
+	<div class="treatment-body">
+		<div class="list-ao">
+			<h4>Antyoxidants:</h4>
+			<p-listbox
+				[options]="antioxydants"
+				[(ngModel)]="selectedAO"
+			></p-listbox>
+		</div>
+		<div class="state-container">
+			<div class="initial-state">
+				<h4>Initial State</h4>
+				<ul *ngIf="isInitSetted">
+					<li>Date: {{ initialState.date }}</li>
+					<li>TAA: {{ initialState.taa }}</li>
+					<li>Lactate: {{ initiallactate }}</li>
+					<li>Pyruvate: {{ initialpyruvate }}</li>
+				</ul>
+			</div>
+			<div class="second-state">
+				<h4>Second State</h4>
+				<ul *ngIf="isSecondSetted">
+					<li>Date: {{ secondState.date }}</li>
+					<li>TAA: {{ secondState.taa }}</li>
+					<li>Lactate: {{ secondState.lactate }}</li>
+					<li>Pyruvate: {{ secondState.pyruvate }}</li>
+				</ul>
+			</div>
+			<div class="third-state">
+				<h4>Third State</h4>
+				<ul *ngIf="isThirdSetted">
+					<li>Date: {{ thirdState.date }}</li>
+					<li>TAA: {{ thirdState.taa }}</li>
+					<li>Lactate: {{ thirdState.lactate }}</li>
+					<li>Pyruvate: {{ thirdState.pyruvate }}</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- <ol class="treatment-body">
 		<li>
 			<p>Determination of AO system initial state</p>
 			<button
 				pButton
 				type="button"
 				label="Set Initial"
-				(click)="onSetState('init')"
+				(click)="onSaveStateDialog('init')"
 				[disabled]="isInitSetted"
 			></button>
 			<button
@@ -39,86 +77,82 @@
 			></button>
 		</li>
 		<li>
-			<p>Select antioxydant for treatment</p>
-			<div class="treatment-body-ao">
-				<p-dropdown
-					[options]="antioxydants"
-					[(ngModel)]="selectedAO"
-				></p-dropdown>
+			<p>Antioxydant for current treatment</p>
 				<button
 					pButton
 					type="button"
 					label="Set 20min state"
-					(click)="onSetState('second')"
+					(click)="onSaveStateDialog('second')"
+					[disabled]="isSecondSetted"
 				></button>
 				<button
 					pButton
 					type="button"
 					label="Set 3day state"
-					(click)="onSetState('third')"
+					(click)="onSaveStateDialog('third')"
+					[disabled]="isThirdSetted"
 				></button>
 			</div>
 		</li>
-	</ol>
+	</ol> -->
 	<p-dialog
-		header="Initial state"
-		[(visible)]="displayInitial"
+		[(header)]="displayStateDialogHeader"
+		[(visible)]="displayStateDialog"
 		[modal]="'true'"
+		(onHide)="onHideReset()"
 	>
-		<div>
-			TAA:
-			<input pInput type="number" />
-			mg\l
-		</div>
-		<div>
-			Lactate:
-			<input pInput type="number" />
-			mg\l
-		</div>
-		<div>
-			Pyruvate:
-			<input pInput type="number" />
-			mg\l
-		</div>
-		<button
-			pButton
-			type="button"
-			label="Save"
-			(click)="onSaveInitial()"
-		></button>
+		<form
+			[formGroup]="operationForm"
+			(ngSubmit)="onSaveState(operationForm.value)"
+		>
+			<div>
+				TAA:
+				<input
+					pInputText
+					type="number"
+					name="taa"
+					formControlName="taa"
+				/>
+				mg\l
+			</div>
+			<div>
+				Lactate:
+				<input
+					pInputText
+					type="number"
+					name="lactate"
+					formControlName="lactate"
+				/>
+				mg\l
+			</div>
+			<div>
+				Pyruvate:
+				<input
+					pInputText
+					type="number"
+					name="pyruvate"
+					formControlName="pyruvate"
+				/>
+				mg\l
+			</div>
+			<button pButton type="submit" label="Save"></button>
+		</form>
 	</p-dialog>
-	<div class="treatment-history">
-		<div class="history-item" *ngFor="let item of history">
-			<div class="item-initial">
-				<h5>Initial</h5>
-				<ul>
-					<li>Date: {{ item.initial.date }}</li>
-					<li>Time: {{ item.initial.time }}</li>
-					<li>TAA: {{ item.initial.taa }}</li>
-					<li>Lactate: {{ item.initial.lactate }}</li>
-					<li>Pyruvate: {{ item.initial.pyruvate }}</li>
-				</ul>
-			</div>
-			<div class="item-second">
-				<h5>{{ item.second.name }} - 20 min</h5>
-				<ul>
-					<li>Date: {{ item.second.date }}</li>
-					<li>Time: {{ item.second.time }}</li>
-					<li>TAA: {{ item.second.taa }}</li>
-					<li>Lactate: {{ item.second.lactate }}</li>
-					<li>Pyruvate: {{ item.second.pyruvate }}</li>
-				</ul>
-			</div>
-			<div class="item-third" *ngIf="isThirdPresented(item)">
-				<h5>{{ item.third.name }} - 3 day</h5>
-				<ul>
-					<li>Date: {{ item.third.date }}</li>
-					<li>Time: {{ item.third.time }}</li>
-					<li>TAA: {{ item.third.taa }}</li>
-					<li>Lactate: {{ item.third.lactate }}</li>
-					<li>Pyruvate: {{ item.third.pyruvate }}</li>
-				</ul>
-			</div>
-		</div>
-	</div>
+	<p-accordion>
+		<p-accordionTab header="History">
+			<ng-template class="treatment-history" pTemplate="history">
+				<div class="history-item" *ngFor="let item of history">
+					<div class="item">
+						<h5>{{ item.name || 'Initial' }}</h5>
+						<ul>
+							<li>Date: {{ item.date }}</li>
+							<li>TAA: {{ item.taa }}</li>
+							<li>Lactate: {{ item.lactate }}</li>
+							<li>Pyruvate: {{ item.pyruvate }}</li>
+						</ul>
+					</div>
+				</div>
+			</ng-template>
+		</p-accordionTab>
+	</p-accordion>
 </div>
