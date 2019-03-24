@@ -173,7 +173,7 @@ export class PatientComponent implements OnInit {
 						},
 						error => {
 							this.isInitSetted = false;
-							console.log('Failed on saving initial state');
+							// console.log('Failed on saving initial state');
 						}
 					);
 				this.history.unshift(this.initialState);

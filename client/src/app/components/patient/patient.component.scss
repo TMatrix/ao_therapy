@@ -1,3 +1,5 @@
+@import '../../../styles.scss';
+$colorText: #313131;
 $itemWidth: 100%;
 
 .main-block {
@@ -5,6 +7,8 @@ $itemWidth: 100%;
 	border-radius: 5px;
 	box-shadow: 3px 3px 10px 1px rgba(0, 0, 0, 0.27);
 	padding: 1rem;
+	font-family: $font;
+	color: $colorText;
 }
 
 .treatment-header {
@@ -30,6 +34,10 @@ $itemWidth: 100%;
 	}
 }
 
+.info-block {
+	padding: 0.5rem 1rem;
+}
+
 .treatment-body {
 	min-height: 40vh;
 	display: flex;
@@ -49,11 +57,13 @@ $itemWidth: 100%;
 	.second-state,
 	.third-state {
 		height: 200px;
+		min-width: 150px;
 		margin: 10px;
 		padding: 5px;
-		border: 1px solid gray;
-		border-radius: 5px;
-
+		box-shadow: 0 1px 14px 0 rgba(0, 0, 0, 0.1),
+			0 2px 8px 0 rgba(0, 0, 0, 0.1), 0 4px 8px -1px rgba(0, 0, 0, 0.1);
+		// border: 1px solid gray;
+		// border-radius: 5px;
 		h4 {
 			text-align: center;
 			padding: 0.5rem;
@@ -65,16 +75,25 @@ $itemWidth: 100%;
 			padding: 0;
 		}
 		ul li {
+			padding: 0.5rem 1rem;
 			list-style: none;
 		}
 	}
+
+	.initial-state-button,
+	.second-state-button,
+	.third-state-button {
+		text-align: center;
+		padding: 1rem 0;
+	}
 }
 
-.treatment-body-ao {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-around;
-	align-items: center;
+.ao-form {
+	div {
+		margin: 1rem 0;
+	}
+
+	text-align: center;
 }
 
 .history-item {

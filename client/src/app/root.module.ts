@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from '@app/router/app-routing.module';
 import { RouterModule } from '@app/router/router.module';
-import { AppComponent } from '@app/app.component';
+import { RootComponent } from '@app/root.component';
+import { AppComponent } from '@app/components/app/app.component';
 import { LoginComponent } from '@app/components/login/login.component';
 import { HeaderComponent } from '@app/components/header/header.component';
 import { SidebarComponent } from '@app/components/sidebar/sidebar.component';
@@ -16,9 +17,11 @@ import { ServiceModule } from '@app/services/services.module';
 import { APIModule } from '@app/api/api.module';
 import { PatientListComponent } from './components/patient-list/patient-list.component';
 import { PatientComponent } from './components/patient/patient.component';
+import { HomeComponent } from './components/home/home.component';
 
 @NgModule({
 	declarations: [
+		RootComponent,
 		AppComponent,
 		LoginComponent,
 		HeaderComponent,
@@ -28,7 +31,8 @@ import { PatientComponent } from './components/patient/patient.component';
 		PatientRegistrationComponent,
 		LoginFormComponent,
 		PatientListComponent,
-		PatientComponent
+		PatientComponent,
+		HomeComponent
 	],
 	imports: [
 		BrowserModule,
@@ -39,6 +43,6 @@ import { PatientComponent } from './components/patient/patient.component';
 		APIModule
 	],
 	providers: [],
-	bootstrap: [AppComponent]
+	bootstrap: [RootComponent]
 })
-export class AppModule {}
+export class RootModule {}

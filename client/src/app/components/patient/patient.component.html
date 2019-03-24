@@ -6,13 +6,14 @@
 				pButton
 				type="button"
 				label="Profile"
+				[disabled]="true"
 				(click)="onShowProfile()"
 			></button>
 			<button
 				pButton
 				type="button"
 				label="Exit"
-				[routerLink]="['/app/']"
+				[routerLink]="['/app/home']"
 			></button>
 		</div>
 	</div>
@@ -20,8 +21,28 @@
 		Content
 		<button pButton type="button" label="Edit"></button>
 	</p-dialog>
+	<div class="info-block">
+		<p>Selected AO: {{ selectedAO || '-' }}</p>
+		<p *ngIf="!isInitSetted">
+			Please, determinate of AO system initial state. (Press "Set
+			Initial")
+		</p>
+		<p *ngIf="isInitSetted && !isSecondSetted">
+			Please, enter the data which was obtained 20 min after the 1-st
+			administration.<br />
+			(Press "Set Second")
+		</p>
+		<p *ngIf="isSecondSetted && !isThirdSetted">
+			{{ selectedAO }} is recommended.<br />
+			Attention! Control of effectivness is required! (Press "Set Third")
+		</p>
+		<p *ngIf="isThirdSetted">
+			Congratulation! The treatment with {{ selectedAO }} antioxydant is
+			effective.
+		</p>
+	</div>
 	<div class="treatment-body">
-		<div class="list-ao">
+		<div class="list-ao" *ngIf="!isThirdSetted">
 			<h4>Antyoxidants:</h4>
 			<p-listbox
 				[options]="antioxydants"
@@ -30,71 +51,69 @@
 		</div>
 		<div class="state-container">
 			<div class="initial-state">
-				<h4>Initial State</h4>
-				<ul *ngIf="isInitSetted">
-					<li>Date: {{ initialState.date }}</li>
-					<li>TAA: {{ initialState.taa }}</li>
-					<li>Lactate: {{ initiallactate }}</li>
-					<li>Pyruvate: {{ initialpyruvate }}</li>
-				</ul>
+				<div class="initial-state-info">
+					<h4>Initial State</h4>
+					<ul *ngIf="isInitSetted">
+						<li>Date: {{ initialState.date.toLocaleString() }}</li>
+						<li>TAA: {{ initialState.taa }}</li>
+						<li>Lactate: {{ initialState.lactate }}</li>
+						<li>Pyruvate: {{ initialState.pyruvate }}</li>
+					</ul>
+				</div>
+				<div class="initial-state-button" *ngIf="!isInitSetted">
+					<button
+						pButton
+						type="button"
+						label="Set Initial"
+						(click)="onSaveStateDialog('init')"
+						[disabled]="isInitSetted"
+					></button>
+				</div>
 			</div>
 			<div class="second-state">
-				<h4>Second State</h4>
-				<ul *ngIf="isSecondSetted">
-					<li>Date: {{ secondState.date }}</li>
-					<li>TAA: {{ secondState.taa }}</li>
-					<li>Lactate: {{ secondState.lactate }}</li>
-					<li>Pyruvate: {{ secondState.pyruvate }}</li>
-				</ul>
+				<div class="second-state-info">
+					<h4>Second State</h4>
+					<ul *ngIf="isSecondSetted">
+						<li>Date: {{ secondState.date.toLocaleString() }}</li>
+						<li>TAA: {{ secondState.taa }}</li>
+						<li>Lactate: {{ secondState.lactate }}</li>
+						<li>Pyruvate: {{ secondState.pyruvate }}</li>
+					</ul>
+				</div>
+				<div class="second-state-button" *ngIf="!isSecondSetted">
+					<button
+						pButton
+						type="button"
+						label="Set Second"
+						(click)="onSaveStateDialog('second')"
+						[disabled]="!isInitSetted || isSecondSetted"
+					></button>
+				</div>
 			</div>
 			<div class="third-state">
-				<h4>Third State</h4>
-				<ul *ngIf="isThirdSetted">
-					<li>Date: {{ thirdState.date }}</li>
-					<li>TAA: {{ thirdState.taa }}</li>
-					<li>Lactate: {{ thirdState.lactate }}</li>
-					<li>Pyruvate: {{ thirdState.pyruvate }}</li>
-				</ul>
+				<div class="third-state-info">
+					<h4>Third State</h4>
+					<ul *ngIf="isThirdSetted">
+						<li>Date: {{ thirdState.date.toLocaleString() }}</li>
+						<li>TAA: {{ thirdState.taa }}</li>
+						<li>Lactate: {{ thirdState.lactate }}</li>
+						<li>Pyruvate: {{ thirdState.pyruvate }}</li>
+					</ul>
+				</div>
+				<div class="third-state-button" *ngIf="!isThirdSetted">
+					<button
+						pButton
+						type="button"
+						label="Set Third"
+						(click)="onSaveStateDialog('third')"
+						[disabled]="
+							!isInitSetted || (!isSecondSetted || isThirdSetted)
+						"
+					></button>
+				</div>
 			</div>
 		</div>
 	</div>
-	<!-- <ol class="treatment-body">
-		<li>
-			<p>Determination of AO system initial state</p>
-			<button
-				pButton
-				type="button"
-				label="Set Initial"
-				(click)="onSaveStateDialog('init')"
-				[disabled]="isInitSetted"
-			></button>
-			<button
-				pButton
-				type="button"
-				label="Reset"
-				(click)="onResetState('init')"
-				[disabled]="!isInitSetted"
-			></button>
-		</li>
-		<li>
-			<p>Antioxydant for current treatment</p>
-				<button
-					pButton
-					type="button"
-					label="Set 20min state"
-					(click)="onSaveStateDialog('second')"
-					[disabled]="isSecondSetted"
-				></button>
-				<button
-					pButton
-					type="button"
-					label="Set 3day state"
-					(click)="onSaveStateDialog('third')"
-					[disabled]="isThirdSetted"
-				></button>
-			</div>
-		</li>
-	</ol> -->
 	<p-dialog
 		[(header)]="displayStateDialogHeader"
 		[(visible)]="displayStateDialog"
@@ -102,38 +121,42 @@
 		(onHide)="onHideReset()"
 	>
 		<form
+			class="ao-form"
 			[formGroup]="operationForm"
 			(ngSubmit)="onSaveState(operationForm.value)"
 		>
 			<div>
-				TAA:
-				<input
-					pInputText
-					type="number"
-					name="taa"
-					formControlName="taa"
-				/>
-				mg\l
+				<span class="ui-float-label">
+					<input
+						id="taa-input"
+						type="number"
+						pInputText
+						formControlName="taa"
+					/>
+					<label for="taa-input">TAA (mg\l)</label>
+				</span>
 			</div>
 			<div>
-				Lactate:
-				<input
-					pInputText
-					type="number"
-					name="lactate"
-					formControlName="lactate"
-				/>
-				mg\l
+				<span class="ui-float-label">
+					<input
+						id="lactate-input"
+						type="number"
+						pInputText
+						formControlName="lactate"
+					/>
+					<label for="lactate-input">Lactate (mg\l)</label>
+				</span>
 			</div>
 			<div>
-				Pyruvate:
-				<input
-					pInputText
-					type="number"
-					name="pyruvate"
-					formControlName="pyruvate"
-				/>
-				mg\l
+				<span class="ui-float-label">
+					<input
+						id="pyruvate-input"
+						type="number"
+						pInputText
+						formControlName="pyruvate"
+					/>
+					<label for="pyruvate-input">Pyruvate (mg\l)</label>
+				</span>
 			</div>
 			<button pButton type="submit" label="Save"></button>
 		</form>
@@ -145,7 +168,7 @@
 					<div class="item">
 						<h5>{{ item.name || 'Initial' }}</h5>
 						<ul>
-							<li>Date: {{ item.date }}</li>
+							<li>Date: {{ item.date.toLocaleString() }}</li>
 							<li>TAA: {{ item.taa }}</li>
 							<li>Lactate: {{ item.lactate }}</li>
 							<li>Pyruvate: {{ item.pyruvate }}</li>

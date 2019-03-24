@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PatientDomainService } from '@app/api/domains/patient-domain.service';
 import { Patient as PatientModel } from '@app/models/patient.model';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-patient-registration',
@@ -12,12 +12,12 @@ import { Observable } from 'rxjs';
 export class PatientRegistrationComponent implements OnInit, OnDestroy {
 	patientForm: FormGroup;
 	submitted: boolean;
-	patients: Observable<any>;
 	isLoading: boolean;
 
 	constructor(
 		private fb: FormBuilder,
-		private patientService: PatientDomainService
+		private patientService: PatientDomainService,
+		private route: Router
 	) {}
 
 	ngOnInit() {
@@ -66,7 +66,8 @@ export class PatientRegistrationComponent implements OnInit, OnDestroy {
 					this.patientForm.reset();
 					this.isLoading = false;
 				}
-				// If succesfully, then go to registered patient page 'patient/:id'
+
+				this.route.navigate([`/app/patient/${data.payload.id}`]);
 			},
 			error => {
 				this.isLoading = false;

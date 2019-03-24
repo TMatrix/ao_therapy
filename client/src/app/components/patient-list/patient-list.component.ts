@@ -26,7 +26,9 @@ export class PatientListComponent implements OnInit {
 			{ field: 'id', header: 'No' },
 			{ field: 'name', header: "Patient's name" },
 			{ field: 'case', header: 'Case No' },
-			{ field: 'date', header: 'Registration date' }
+			{ field: 'recommendedAO', header: 'Antioxydant' },
+			{ field: 'date', header: 'Registration date' },
+			{ field: 'age', header: 'Age' }
 		];
 	}
 

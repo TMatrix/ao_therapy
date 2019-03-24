@@ -1,40 +1,28 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-
 import { LoginService } from '@app/services/login.service';
-// import { StoreService } from '@app/services/store.service';
-
 import { Login as LoginModel } from '@app/models/login.model';
-// import {
-// 	Login as LoginAction,
-// } from '@app/store/actions/user/user.actions';
-// import { isUserLoading } from '@app/store/selectors/user.selectors';
+import { UserDomainService } from '@app/api/domains/user-domain.service';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-login',
 	templateUrl: './login.component.html',
 	styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnInit {
 	loginForm: FormGroup;
 
 	// isLoading = false;
 
-	// private storeDisconnect: () => void;
-
-	constructor(private loginService: LoginService) {} // private storeService: StoreService
+	constructor(
+		private loginService: LoginService,
+		private userService: UserDomainService,
+		private route: Router
+	) {}
 
 	ngOnInit() {
 		this.createForms();
-
-		// this.storeDisconnect = this.storeService.connect([
-		// 	{
-		// 		subscriber: isLoading => {
-		// 			this.isLoading = isLoading;
-		// 		},
-		// 		selector: isUserLoading()
-		// 	}
-		// ]);
 	}
 
 	private createForms() {
@@ -47,7 +35,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
 	onLogin(loginModel: LoginModel) {
 		const user = this.trimStringFields<LoginModel>(loginModel);
-		// this.storeService.dispatch(new LoginAction({ user }));
+		this.userService.login(user).subscribe(data => {
+			if (data.isSuccess) {
+				this.route.navigate(['/app/home']);
+			}
+		});
 	}
 
 	private trimStringFields<T>(obj: T): T {
@@ -59,9 +51,5 @@ export class LoginComponent implements OnInit, OnDestroy {
 			},
 			{} as T
 		);
-	}
-
-	ngOnDestroy(): void {
-		// this.storeDisconnect();
 	}
 }

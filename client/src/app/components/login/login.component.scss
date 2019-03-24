@@ -2,15 +2,21 @@
 
 .login-container {
 	height: 100%;
+	width: 80%;
+	margin: 0 auto;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
-	border: 1px solid red;
+
+	img {
+		height: 10rem;
+		background-color: $mainColor;
+	}
 }
 
 .main-block {
-	width: 100%;
+	width: 75%;
 	min-height: 20px;
 	border-top: none;
 	padding: 1.5rem;
@@ -22,7 +28,7 @@
 	font-size: $fontSize;
 	transition: 0.1s ease;
 	background-color: $secondaryColor;
-	box-shadow: -1px 1px 3px rgba(151, 155, 174, 0.2),
-		1px 1px 3px rgba(151, 155, 174, 0.2);
+	box-shadow: -1px 1px 3px rgba(151, 155, 174, 0.5),
+		1px 1px 3px rgba(151, 155, 174, 0.5);
 	box-sizing: border-box;
 }

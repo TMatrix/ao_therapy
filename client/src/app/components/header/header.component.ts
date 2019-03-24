@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { UserDomainService } from '@app/api/domains/user-domain.service';
 
 @Component({
 	selector: 'app-header',
 	templateUrl: './header.component.html',
 	styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
-	isAuthorized = false;
+export class HeaderComponent {
+	constructor(private userService: UserDomainService) {}
 
-	constructor() {}
-
-	ngOnInit() {}
+	logout() {
+		this.userService.logout();
+	}
 }
