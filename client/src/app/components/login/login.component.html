@@ -1,11 +1,12 @@
-<div class="login-container">
-	<img src="assets/aoTherapyLogo.svg" alt="Logo" />
-	<h3>Antioxydant Therapy</h3>
-	<div class="main-block">
-		<app-login-form
-			[loginForm]="loginForm"
-			(loginClick)="onLogin($event)"
-		></app-login-form>
+<div class="ui-g">
+	<div class="ui-md-6 ui-md-offset-3 ui-sm-10 ui-sm-offset-1 ui-lg-4 ui-lg-offset-4 login-container">
+		<img src="assets/aoTherapyLogo.svg" alt="Logo" />
+		<h3>Antioxydant Therapy</h3>
+		<div class="main-block">
+			<app-login-form
+				[loginForm]="loginForm"
+				(loginClick)="onLogin($event)"
+			></app-login-form>
+		</div>
 	</div>
-	<div class=""></div>
 </div>
