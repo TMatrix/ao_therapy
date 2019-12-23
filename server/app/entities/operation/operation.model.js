@@ -14,7 +14,7 @@ const Operation = sequelize.define('operations', {
 		}
 	},
 	date: {
-		type: Sequelize.STRING,
+		type: Sequelize.DATE,
 		allowNull: false
 	},
 	treatment: {

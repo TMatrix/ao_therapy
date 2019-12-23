@@ -29,7 +29,7 @@ app.use(bodyParser.text());
 
 initializeAPIRoutes(app);
 
-const staticPath = path.resolve(`${__dirname}/../client/dist/client`);
+const staticPath = path.resolve(`${__dirname}/../../client/dist/client`);
 app.use(express.static(staticPath));
 
 // pre-sending middleware

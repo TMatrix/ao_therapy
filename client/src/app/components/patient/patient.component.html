@@ -54,7 +54,10 @@
 				<div class="initial-state-info">
 					<h4>Initial State</h4>
 					<ul *ngIf="isInitSetted">
-						<li>Date: {{ initialState.date.toLocaleString() }}</li>
+						<li>
+							<i class="pi pi-calendar"></i>
+							{{ initialState.date | date: 'mediumDate' }}
+						</li>
 						<li>TAA: {{ initialState.taa }}</li>
 						<li>Lactate: {{ initialState.lactate }}</li>
 						<li>Pyruvate: {{ initialState.pyruvate }}</li>
@@ -168,7 +171,10 @@
 					<div class="item">
 						<h5>{{ item.name || 'Initial' }}</h5>
 						<ul>
-							<li>Date: {{ item.date.toLocaleString() }}</li>
+							<li>
+								<i class="pi pi-calendar"></i>
+								{{ item.date | date: 'mediumDate' }}
+							</li>
 							<li>TAA: {{ item.taa }}</li>
 							<li>Lactate: {{ item.lactate }}</li>
 							<li>Pyruvate: {{ item.pyruvate }}</li>

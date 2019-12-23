@@ -7,16 +7,7 @@ class OperationService {
 	}
 
 	getAll(patientId) {
-		return this.OperationRepository.getAll(patientId).then(data => {
-			const newData = data.map(el => {
-				const date = new Date(el.dataValues.date);
-				el.dataValues.time = `${date.getHours()}:${date.getMinutes()}`;
-				el.dataValues.date = `${date.getDate()}.${date.getMonth() +
-					1}.${date.getFullYear()}`;
-				return el;
-			});
-			return newData;
-		});
+		return this.OperationRepository.getAll(patientId);
 	}
 
 	getById(id) {
